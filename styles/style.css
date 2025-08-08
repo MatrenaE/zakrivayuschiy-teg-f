@@ -17,7 +17,8 @@
   font-family: var(--main-font, sans-serif);
   font-variation-settings: 'wght' var(--main-font-weight, 410);
   font-size: var(--main-font-size, 18px);
-  background-image: var(--background-gradient);
+  background-image: var(--background-gradient, #d3ded3);
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -35,14 +36,14 @@
   justify-self: center;
 }
 
-.title {
-  font-family: var( --accent-font, sans-serif);
+.title__decoration {
+  font-family: var( --accent-font, fantasy);
   font-size: clamp(3.0625rem, 2.7292rem + 1.4815vw, 4.0625rem);
 }
 
-.title__paragraph {
+.title {
   text-transform: uppercase;
-  font-family: var( --accent-font, sans-serif);
+  font-family: var( --accent-font, fantasy);
   font-size: clamp(0.875rem, 0.6875rem + 0.8333vw, 1.4375rem);
 }
 
@@ -51,7 +52,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 49px;
+  gap: 51px;
   margin-block-end: 100px;
 }
 
@@ -80,7 +81,7 @@
 .card-image-wrapper::before {
   content: '</HTML>';
   position: absolute;
-  font-family: var(--accent-font, sans-serif);
+  font-family: var(--accent-font, fantasy);
   font-size: var(--button-font-size, 14px);
   z-index: 2;
   inset-block-start: 25px;
@@ -111,31 +112,31 @@
   z-index: 1;
 }
 
-.img-filter__first-spr_clear-page {
+.img-filter__saturation-less {
   filter: saturate(30%);
 }
 
-.img-filter__third-spr_give-up {
+.img-filter__blur {
   filter: blur(20px);
 }
 
-.img-filter__first-spr_i-cant {
+.img-filter__saturation-more {
   filter: saturate(450%);
 }
 
-.img-filter__third-spr_strategies {
+.img-filter__sepia {
   filter: sepia(90%);
 }
 
-.img-filter__second-spr_who-cares {
+.img-filter__inversion {
   filter: invert(80%);
 }
 
-.img-filter__second-spr_ideal-race {
+.img-filter__hue-rotate {
   filter: hue-rotate(0.1turn);
 }
 
-.img-filter__third-spr_right-now {
+.img-filter__mix-filter {
   filter: blur(3px) hue-rotate(0.25turn) contrast(0.5);
 }
 
@@ -165,7 +166,7 @@
 .button {
   border: 2px solid var(--accent-color, #000);
   color: currentColor;
-  font-family: var(--accent-font, sans-serif);
+  font-family: var(--accent-font, fantasy);
   font-size: var(--button-font-size, 14px);
 }
 
@@ -175,19 +176,13 @@
   transition: box-shadow 0.3s ease;
 }
 
-.button-effect_s-size {
+.button-effect {
   position: relative;
   transition: box-shadow 0.3s ease;
   overflow: hidden;
 }
 
-.button-effect_m-size {
-  position: relative;
-  transition: box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-.button-effect_s-size::after {
+.button-effect::after {
   content: "";
   position: absolute;
   background-color: var(--accent-color, #000);
@@ -195,30 +190,13 @@
   inline-size: 110%;
   inset-inline-start: -2px;
   inset-block-start: -2px;
-  transform: translateX(-139px);
+  transform-origin: center left;
+  transform: scaleX(0);
   transition: transform 0.5s ease-in-out 0s;
 }
 
-.button-effect_m-size::after {
-  content: "";
-  position: absolute;
-  background-color: var(--accent-color, #000);
-  block-size: 110%;
-  inline-size: 110%;
-  inset-inline-start: -2px;
-  inset-block-start: -2px;
-  transform: translateX(-365px);
-  transition: transform 0.5s ease-in-out 0s;
-}
-
-.button-effect_s-size:hover::after {
-  transform: scale(1);
-  transition: transform 0.5s ease-in-out 0s;
-  overflow: hidden;
-}
-
-.button-effect_m-size:hover::after {
-  transform: scale(1);
+.button-effect:hover::after {
+  transform: scaleX(1);
   transition: transform 0.5s ease-in-out 0s;
   overflow: hidden;
 }
@@ -244,33 +222,44 @@
   inline-size: clamp(19.125rem, 18.4868rem + 2.723vw, 20.9375rem);
   block-size: max-content;
   padding-block: 15px;
-  padding-inline: 15px;
+  padding-inline: 18px;
   background-color: var(--background-color, #fff);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  margin-block-start: 4px;
 }
 
 .save-button__img {
   inline-size: 21px;
 }
 
-.save-dialog {
-  inline-size: clamp(21.3125rem, 21.0625rem + 1.1111vw, 22.0625rem);
+.save-dialog[open] {
+  width: 90vw;
+  min-width: 341px;
+  max-width: 353px;
+  margin-block-start: 36.5vh;
   block-size: max-content;
-  padding-inline: 30px;
-  padding-block: 30px;
+  padding-inline: 25px;
+  padding-block: 27px;
+  margin-inline: auto;
+}
+
+.save-dialog[open]::backdrop {
+  background-color: var(--accent-color, #000);
+  opacity: 75%;
 }
 
 .save_dialog-content {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 22px;
 }
 
 .save_dialog-title {
-  font-family: var(--accent-font, sans-serif);
+  font-family: var(--accent-font, fantasy);
   font-size: var(--button-font-size, 14px);
   text-transform: uppercase;
   line-height: 1.5;
@@ -282,6 +271,7 @@
   background-color: var(--background-color, #fff);
   justify-self: center;
   margin-block-start: 30px;
+  margin-inline-start: 4px;
 }
 
 .save-dialog-button__img {
@@ -289,10 +279,15 @@
 }
 
 .card__icon-button {                     /*СЕРДЕЧКО*/
+  inline-size: 38px;
+  block-size: 38px;
   padding: 0;
   background-color: transparent;
   border: none;
   transition: box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__icon-button:focus {
@@ -300,13 +295,8 @@
 }
 
  .card__icon-button:focus-visible {
-  box-shadow: 0 0 0 2px var(--accent-color, #000);
-  transition: box-shadow 0.3s ease;
-}
-
-.like-icon {
-  inline-size: 39px;
-  block-size: 36px;
+  border: 2px solid #000;
+  transition: border 0.3s ease;
 }
 
  .sparks {
@@ -370,25 +360,32 @@
   animation: sparks 0.3s ease-in 0.3s;
 }
 
-
-dialog::backdrop {
-  background-color: var(--accent-color);
-  opacity: 75%;
-}
-
-
 @media (width <= 430px) {
 
   .content {
-    gap: 51px;
+    gap: 52.5px;
+  }
+
+  .card__text-zone {
+    padding-block: 22.4px;
   }
 
   .save-button {
     flex-direction: column;
-    padding-block: 11px
+    padding-block: 13px;
+    margin-block-start: 0;
+    gap: 5px;
   }
 
   .save-button__img {
     inline-size: 28px;
+  }
+
+  .save-dialog {
+    padding-inline: 39px;
+  }
+
+  .save_dialog-button {
+    margin-inline-start: 0;
   }
 }
