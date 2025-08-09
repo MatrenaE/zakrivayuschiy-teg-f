@@ -239,9 +239,8 @@
   width: 90vw;
   min-width: 341px;
   max-width: 353px;
-  margin-block-start: 36.5vh;
   block-size: max-content;
-  padding-inline: 25px;
+  padding-inline: 27px;
   padding-block: 27px;
   margin-inline: auto;
 }
@@ -255,7 +254,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 20px;
 }
 
 .save_dialog-title {
@@ -271,7 +270,7 @@
   background-color: var(--background-color, #fff);
   justify-self: center;
   margin-block-start: 30px;
-  margin-inline-start: 4px;
+  margin-inline-start: 2px;
 }
 
 .save-dialog-button__img {
@@ -373,16 +372,24 @@
   .save-button {
     flex-direction: column;
     padding-block: 13px;
-    margin-block-start: 0;
+    margin-block-start: -1px;
     gap: 5px;
   }
 
   .save-button__img {
-    inline-size: 28px;
+    inline-size: 29px;
   }
 
-  .save-dialog {
-    padding-inline: 39px;
+  .save-dialog[open] {
+    padding-inline: 38px;
+  }
+
+  .save_dialog-content {
+    gap: 19px;
+  }
+  
+  .save-dialog-button__img {
+    inline-size: 94px;
   }
 
   .save_dialog-button {
